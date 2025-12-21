@@ -6,7 +6,7 @@ function CounterApp() {
 
   useEffect(() => {
     if (count % 2 === 0) {
-      setBgColor("#fef9c3"); // yellow-100
+      setBgColor("#ffff66"); // yellow-100
     } else {
       setBgColor("#22c55e"); // green-500
     }

@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+/* Apply this class to the element whose scrollbar you want to style */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background-color: #ffffff00; /* RE-ADDED */
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f3d8d8ff;
+  border-radius: 5px;
+  /* NEW: Track Shadow */
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #4e1818ff;
+  border-radius: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #555555;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:active {
+  background-color: #333333;
+}
+.custom-scrollbar::-webkit-scrollbar-corner {
+  background: #f1f1f1;
+}
+/* Firefox fallback (limited styling) */
+/*
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #4e1818ff #f3d8d8ff;
+}
+*/
+
+/* Animation utilities for modals, buttons, and interactive chips */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.anim-overlay {
+  animation: fadeIn 180ms ease-out both;
+}
+
+.anim-modal {
+  animation: scaleUp 200ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
+  transform-origin: center;
+}
+
+.anim-btn {
+  transition: transform 150ms ease, background-color 150ms ease,
+    box-shadow 150ms ease;
+}
+.anim-btn:hover {
+  transform: translateY(-3px);
+}
+
+.anim-chip {
+  transition: background-color 140ms ease, transform 120ms ease,
+    box-shadow 120ms ease;
+}
+.anim-chip:hover {
+  transform: translateY(-2px) scale(1.01);
+}
+
+.anim-input {
+  transition: box-shadow 140ms ease, border-color 140ms ease,
+    background-color 140ms ease;
+}

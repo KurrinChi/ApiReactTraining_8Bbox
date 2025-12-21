@@ -1,0 +1,68 @@
+Supervisor Brief — Recipe App (task2)
+
+Generated: December 22, 2025
+
+Overview
+- Purpose: Small React + Tailwind app to list, add, edit, and view recipes with a richer recipe schema and improved UX.
+- Tech: React, Tailwind CSS, axios, TanStack Query. Code lives under task2/src.
+
+Vital Files & How They Work
+
+1) task2/src/api/recipes.js
+- Purpose: Client-side API wrapper that normalizes, validates, and performs HTTP calls for recipes.
+- Key functions: fetchRecipes(), addRecipe(payload), updateRecipe(id,payload), deleteRecipe(id), plus helpers normalizeRecipe(), validateRecipe(), generateQuestionForField(), and ValidationError.
+- Behavior: Normalizes inbound/outbound objects to the app schema, validates required fields (partial for edits), and centralizes error/clarification generation. Uses axios for HTTP calls.
+- Why it matters: Keeps UI components simple and enforces consistent data shape.
+
+2) task2/src/App.jsx
+- Purpose: Root component that sets up QueryClient (TanStack Query) and composes the main UI.
+- Key responsibilities: Triggers and coordinates optimistic mutations (add/update/delete) using onMutate/onError/onSettled, and renders RecipeTable and modal components.
+- Why it matters: Coordinates server-sync and UI responsiveness.
+
+3) task2/src/main.jsx
+- Purpose: Application bootstrap. Imports global CSS and mounts the React app into the DOM.
+- Why it matters: Ensures global styles and providers are applied.
+
+4) task2/src/index.css
+- Purpose: Global styles including Tailwind import plus custom utilities.
+- Key contents: custom scrollbar rules and animation utilities (.anim-overlay, .anim-modal, .anim-btn, .anim-chip, .anim-input).
+- Why it matters: Central place for visual polish and global transition tuning.
+
+5) task2/src/components/RecipeTable.jsx
+- Purpose: Main list/grid of recipes with search, tag filters, and per-card actions.
+- Key parts: name search, tag-pill filter strip, tagTintClass() deterministic tint helper, rendering cards with image/meta, eye icon to open RecipeView.
+- Why it matters: Primary user interaction surface (filtering, browsing, open/edit actions).
+
+6) task2/src/components/AddModal.jsx
+- Purpose: Form UI to create a recipe.
+- Key features: parseLines/parseComma helpers, client-side validate() that blocks submission and shows inline errors for required fields, and sends normalized payloads to the API.
+- Why it matters: Prevents invalid data and improves UX with immediate validation feedback.
+
+7) task2/src/components/EditModal.jsx
+- Purpose: Edit form that pre-fills inputs from initialData and submits updates.
+- Key behavior: Loads values when opened, uses shared parsing logic, submits normalized payload. Includes overlay/panel animation classes.
+
+8) task2/src/components/RecipeView.jsx
+- Purpose: Read-only detailed modal (left summary with image and stats; right details with ingredients and ordered instructions).
+- Key behavior: Accepts recipe and open props, closes on Escape or outside click, and uses shared animation utilities for consistent transitions.
+
+Quick Traces
+- Add recipe: AddModal validates/parses → App.jsx triggers optimistic mutation → recipes.js normalizes and posts → QueryClient reconciles response.
+- Filter by tag: RecipeTable collects tags from recipes; toggling a chip updates local filter state and the displayed list.
+
+How to produce a PDF
+- Option A (manual): Open task2/SUPERVISOR_BRIEF.html in a browser and Print → Save as PDF.
+- Option B (automated, Node + Puppeteer): from the task2 folder, run:
+
+  cd task2
+  npm install puppeteer
+  node scripts/generate_pdf.js
+
+  This produces task2/SUPERVISOR_BRIEF.pdf.
+
+Notes for Supervisor
+- Visual tuning: edit keyframes and utility classes in task2/src/index.css to change animation timing and easing; changes propagate app-wide.
+- Debugging tips: inspect network calls in task2/src/api/recipes.js and mutation cache logic in task2/src/App.jsx.
+
+Contact
+- If you want, I can generate the PDF here (requires installing puppeteer), or you can print the HTML locally. Let me know which you prefer.
