@@ -115,9 +115,31 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen bg-[color:#212121] p-4 text-gray-900 dark:text-white">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-2xl font-bold mb-6 text-center">Pizza Shop CRUD</h1>
+    <div className="min-h-screen bg-[#212121] p-4 text-gray-900 dark:text-white">
+      <div className="max-w-full mx-auto p-5">
+        <div className="flex flex-col items-center gap-6 pt-6 pb-10 text-[#A01818]">
+          {/* Top meta row */}
+          <div className="flex w-full max-w-4xl justify-between self-center-safe text text-[10px] tracking-[0.35em] uppercase">
+            <span>Food Hub</span>
+            <span>PIZZA-STER</span>
+            <span>@2025</span>
+          </div>
+
+          {/* Main brand name */}
+          <h1 className="text-[56px] leading-none tracking-[0.35em] font-light uppercase">
+            PIZZA-STER
+          </h1>
+
+          {/* Subtitle */}
+          <p className="text-[11px] tracking-[0.35em] uppercase">
+            Italian Food Hub
+          </p>
+
+          {/* Footer credit */}
+          <p className=" text-[10px] tracking-[0.35em] uppercase">
+            By:Fernandez, Ethan
+          </p>
+        </div>
 
         <div className="flex items-center justify-between mb-4 gap-2">
           <input
